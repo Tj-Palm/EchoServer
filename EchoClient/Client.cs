@@ -17,22 +17,24 @@ namespace EchoClient
                 NetworkStream ns = socket.GetStream();
                 StreamWriter sw = new StreamWriter(ns);
                 StreamReader sr = new StreamReader(ns);
+                sw.AutoFlush = true;
 
-                bool LoopExit = true;
+                bool loopexiter = true;
 
-                while (LoopExit)
+                while (loopexiter)
                 {
                     string message = Console.ReadLine();
-                    if (message == "exit".ToUpper())
+                    if (message == "Exit")
                     {
-                        LoopExit = false;
+                        loopexiter = false;
                         continue;
                     }
+
                     sw.WriteLine(message);
 
-                    string ServerResponse = sr.ReadLine();
+                    string ServerAnswer = sr.ReadLine();
 
-                    Console.WriteLine("Console: " + ServerResponse);
+                    Console.WriteLine("Console: " + ServerAnswer);
                 }
             }
         }
